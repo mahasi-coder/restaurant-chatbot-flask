@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasty Bites Restaurant</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="chat-box">
+
+<h1>🍽️ Tasty Bites Restaurant</h1>
+
+<p>Welcome! Ask me about our menu, reservations or special offers.</p>
+
+<form method="POST">
+
+<input
+type="text"
+name="message"
+placeholder="Type your message here..."
+required>
+
+<button type="submit">Send</button>
+
+</form>
+
+<hr>
+
+{% for message in messages %}
+
+{% if message.role == "user" %}
+
+<div class="user-message">
+<b>You:</b><br>
+{{ message.content }}
+</div>
+
+{% endif %}
+
+{% if message.role == "assistant" %}
+
+<div class="assistant-message">
+<b>Assistant:</b><br>
+{{ message.content }}
+</div>
+
+{% endif %}
+
+<br>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>
